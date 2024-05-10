@@ -1,0 +1,23 @@
+created:
+    - database/factories/DepartementFactory.php
+    - database/factories/PositionFactory.php
+    - database/factories/EmployeeFactory.php
+    - database/factories/LeaveRequestFactory.php
+    - database/factories/SalaryFactory.php
+    - database/migrations/2024_04_30_155304_create_departements_table.php
+    - database/migrations/2024_04_30_155305_create_positions_table.php
+    - database/migrations/2024_04_30_155306_create_employees_table.php
+    - database/migrations/2024_04_30_155307_create_leave_requests_table.php
+    - database/migrations/2024_04_30_155308_create_salaries_table.php
+    - app/Models/Departement.php
+    - app/Models/Position.php
+    - app/Models/Employee.php
+    - app/Models/LeaveRequest.php
+    - app/Models/Salary.php
+models:
+    User: {  }
+    Departement: { name: string, description: 'text nullable', relationships: { hasMany: Employee } }
+    Position: { name: string, description: 'text nullable', relationships: { hasMany: Employee } }
+    Employee: { departement_id: foreign, position_id: foreign, name: string, email: string, joined: date, status: string, relationships: { hasMany: 'LeaveRequest, Salary' } }
+    LeaveRequest: { employee_id: foreign, start_date: date, end_date: date, type: string, status: string, reason: 'text nullable' }
+    Salary: { employee_id: foreign, amount: integer, effective_date: date }

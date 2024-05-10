@@ -1,0 +1,35 @@
+models:
+  Departement:
+    name: string
+    description: text nullable
+    relationships:
+      hasMany: Employee
+
+  Position:
+    name: string
+    description: text nullable
+    relationships:
+      hasMany: Employee
+
+  Employee:
+    departement_id: foreign
+    position_id: foreign
+    name: string
+    email: string
+    joined: date
+    status: string
+    relationships:
+      hasMany: LeaveRequest, Salary
+
+  LeaveRequest:
+    employee_id: foreign
+    start_date: date
+    end_date: date
+    type: string
+    status: string
+    reason: text nullable
+
+  Salary:
+    employee_id: foreign
+    amount: integer
+    effective_date: date
